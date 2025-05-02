@@ -1,2 +1,2 @@
-# TheBigWazz.github.io
+# TheBigWazz
 Homepage for TheBigWazz
