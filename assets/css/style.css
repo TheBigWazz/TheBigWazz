@@ -247,26 +247,136 @@ section h2 {
 }
 
 /* Updates section */
-.update-item {
+.updates-list-card { /* This is the single card for all updates */
     background: #2c3e50;
     border-radius: 8px;
     padding: 1.5rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.5rem; /* Margin for the entire card section */
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
-.update-item h3 {
-    color: #f8f9fa;
+/* Styling for individual entries within the card */
+.individual-update-entry {
+    /* No specific card styles here; it's a content flow within .updates-list-card */
+    /* Add padding or margin if needed between the entry and the <hr> or next entry */
 }
 
-.update-item .date {
-    color: #b2bec3;
-    font-size: 0.9rem;
-    margin-bottom: 0.5rem;
+/* Font inheritance and specific styles for elements within each update entry */
+.individual-update-entry h1,
+.individual-update-entry h2,
+.individual-update-entry h3,
+.individual-update-entry h4,
+.individual-update-entry h5,
+.individual-update-entry h6,
+.individual-update-entry p,
+.individual-update-entry ul,
+.individual-update-entry ol,
+.individual-update-entry li,
+.individual-update-entry blockquote,
+.individual-update-entry strong,
+.individual-update-entry em,
+.individual-update-entry a {
+    font-family: inherit; /* Inherit from body ('Segoe UI', etc.) */
+    color: #f8f9fa; /* Default light text color for readability */
 }
 
-.update-item p {
-    color: #f8f9fa;
+/* Make links in updates use the global link color or a custom one */
+.individual-update-entry a {
+    color: #3498db; /* This is your site's global link color */
+    /* text-decoration: underline; */ /* Uncomment this line if you want underlines */
+}
+
+/* Retain specific styling for headings within updates if necessary */
+.individual-update-entry h3 {
+    color: #f8f9fa; /* Ensures heading color if not inherited properly */
+    margin-top: 0.5em; /* Add some space above headings */
+    margin-bottom: 0.5em; /* Add some space below headings */
+}
+
+/* Styles for code blocks and inline code within individual update entries */
+.individual-update-entry pre,
+.individual-update-entry code {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: rgba(0,0,0,0.1);
+    padding: 2px 4px;
+    border-radius: 4px;
+    color: #e0e0e0;
+}
+
+.individual-update-entry pre {
+    padding: 0.75em;
+    margin: 0.5em 0;
+    overflow-x: auto;
+    background-color: rgba(0,0,0,0.2);
+}
+
+    /* Styling for lists within updates to show bullets/numbers */
+    .individual-update-entry ul {
+        list-style: disc; /* Show dot bullets */
+        margin-left: 20px; /* Indentation for the list */
+        padding-left: 20px; /* Space for the bullet itself */
+    }
+
+    .individual-update-entry ol {
+        list-style: decimal; /* Show numbers for ordered lists */
+        margin-left: 20px;
+        padding-left: 20px;
+    }
+
+/* Separator between update entries */
+hr.update-separator {
+    border: none;
+    height: 1px;
+    background-color: rgba(248, 249, 250, 0.2); /* Light separator on dark card */
+    margin: 1.5rem 0; /* Space around hr */
+}
+
+/* Remove bottom margin from the last individual-update-entry if using hr, or adjust hr margin */
+.individual-update-entry:last-child {
+    margin-bottom: 0; /* Optional: if hr provides enough spacing */
+}
+/* Remove the last hr separator */
+.individual-update-entry:last-child + hr.update-separator {
+    display: none; /* This CSS selector might not work as <hr> is a sibling of the wrapper */
+}
+/* A better way to handle the last separator is not to add it in JS if it's the last item,
+   or style the last hr specifically if the JS always adds it.
+   The current JS adds it via .join(), so the last item won't have an <hr> after it. This is good.
+*/
+
+/* Ensure text in update items uses the body font (excluding code/pre) */
+.update-item h1,
+.update-item h2,
+.update-item h3,
+.update-item h4,
+.update-item h5,
+.update-item h6,
+.update-item p,
+.update-item ul,
+.update-item ol,
+.update-item li,
+.update-item blockquote,
+.update-item strong,
+.update-item em,
+.update-item a {
+    font-family: inherit; /* This will inherit from 'Segoe UI', etc. */
+}
+
+/* Styles for code blocks and inline code within updates */
+.update-item pre,
+.update-item code {
+    font-family: 'Courier New', Courier, monospace; /* Monospace font stack */
+    background-color: rgba(0,0,0,0.1); /* Subtle background for code elements */
+    padding: 2px 4px;
+    border-radius: 4px;
+    color: #e0e0e0; /* Lighter text color for code on dark backgrounds */
+}
+
+.update-item pre { /* Specific styles for multi-line code blocks */
+    padding: 0.75em; /* More padding for blocks */
+    margin: 0.5em 0; /* Add some space around code blocks */
+    overflow-x: auto; /* Allow horizontal scrolling for long lines of code */
+    background-color: rgba(0,0,0,0.2); /* Slightly darker for blocks */
 }
 
 /* Footer */
@@ -324,24 +434,71 @@ main {
     margin-left: -1em;
 }
 
+/* Styling for standard lists within .about-text to show bullets/numbers */
+.about-text ul {
+    list-style: disc; /* Show dot bullets */
+    margin-top: 0.5em; /* Space above the list */
+    margin-bottom: 1em; /* Space below the list */
+    padding-left: 40px; /* Indentation and space for bullets */
+}
+
+.about-text ul li {
+    margin-bottom: 0.5em; /* Space between list items */
+}
+
+.about-text ol { /* For numbered lists, if you use them */
+    list-style: decimal;
+    margin-top: 0.5em;
+    margin-bottom: 1em;
+    padding-left: 40px;
+}
+
+.about-text ol li {
+    margin-bottom: 0.5em;
+}
+
+/* Styling for standard lists within .about-text to show bullets/numbers */
+.about-text ul {
+    list-style: disc; /* Show dot bullets */
+    margin-top: 0.5em; /* Space above the list */
+    margin-bottom: 1em; /* Space below the list */
+    padding-left: 40px; /* Indentation and space for bullets */
+}
+
+.about-text ul li {
+    margin-bottom: 0.5em; /* Space between list items */
+}
+
+.about-text ol { /* For numbered lists, if you use them */
+    list-style: decimal;
+    margin-top: 0.5em;
+    margin-bottom: 1em;
+    padding-left: 40px;
+}
+
+.about-text ol li {
+    margin-bottom: 0.5em;
+}
+
 .profile-card {
-    background: white;
+    background: linear-gradient(to right, #3494e6, #ec6ead); /* Changed background */
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     margin-bottom: 2rem;
+    color: white; /* Added default light text color */
 }
 
 .profile-card h3 {
     padding: 1rem;
     margin: 0;
     text-align: center;
-    color: #2c3e50;
+    color: white; /* Changed color */
 }
 
 .job-title {
     text-align: center;
-    color: #7f8c8d;
+    color: #f0f0f0; /* Changed to a light color */
     margin: 0 0 1rem;
 }
 
@@ -363,11 +520,24 @@ main {
     background-color: #e9ecef;
 }
 
+/* About page - Profile Card Photo Styling */
+.profile-placeholder {
+    padding: 20px; /* Creates the "border" by showing .profile-card background */
+}
+
+.profile-placeholder img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px; /* Rounded corners for the image itself */
+}
+
 .testimonial {
-    background: white;
+    background: linear-gradient(to right, #3494e6, #ec6ead); /* Changed background */
     border-radius: 8px;
     padding: 1.5rem;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    color: #f8f9fa; /* Added default light text color */
 }
 
 .testimonial blockquote {
@@ -390,7 +560,7 @@ main {
     text-align: right;
     font-weight: 600;
     font-style: normal;
-    color: #2c3e50;
+    color: #f0f0f0; /* Changed to a light color */
 }
 
 /* Contact page styles */

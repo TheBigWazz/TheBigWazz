@@ -33,34 +33,58 @@
         <section class="featured-projects">
             <h2>Featured Projects</h2>
             <div class="project-grid">
-                <a href="#" class="project-card">
+                <a href="pineapple-fried.html" class="project-card">
                     <h3>Pineapple Fried</h3>
                     <p>A comprehensive theme for Zen Browser that focuses on cohesive and transparent new tab pages.</p>
-                    <p><strong>Tags:&nbsp;</strong> Zen, Theme, CSS</p>
-                </a>
-                <a href="#" class="project-card">
+                    </a>
+                <a href="https://github.com/Silkbrush" class="project-card">
                     <h3>Silkbrush</h3>
                     <p>A collective of Zen Browser community members aiming to make ricing Zen Browser more accessible to all.</p>
-                    <p><strong>Tags:&nbsp;</strong> Zen, Silkthemes, CSS, Silkbrush</p>
-                </a>
+                    </a>
                 <a href="#" class="project-card">
-                    <h3>Slate</h3>
-                    <p>Uniform transparency for Yakuake terminal.</p>
-                    <br/>
-                    <br/>
-                    <p><strong>Tags:&nbsp;</strong> Yakuake, Linux, Theme</p>
-                </a>
+                    <h3>Side-Fried</h3>
+                    <p>A Firefox Vertical Tab add-on that adds some quality of life features like workspaces, essentials, and pinned tab grid.</p>
+                    </a>
             </div>
         </section>
 
         <section class="updates">
             <h2>Latest Updates</h2>
-            <div class="update-item">
-                <h3>Update Title</h3>
-                <p class="date">May 2, 2025</p>
-                <p>This is a placeholder for your latest update. You can replace this with actual content about your recent activities or projects.</p>
-            </div>
-        </section>
+            <div class="updates-list-card">
+                </div>
+
+            <script type="text/markdown" id="update-post-1">
+### Big Wazz, Big Life, Big Changes
+### **Date:** May 27, 2025
+<br/>
+
+My first update, and it's a doozy. I have several projects in the works currently, but they are taking a back seat to some more important life changes happening at the momment. 
+
+<br/>
+
+### **Life Stuff**
+* I'm getting married! Date is set for July 27th 2025. Much of my time is currently devoted to wedding planning. 
+<br/>
+
+* On the search for a new job. If I'm not wedding planning, I'm on the prowl for a new position in the IT Field. I excell in small-medium buisness support and IT administration. I have a few interviews lined up and am excited for the next phase of my carrer. 
+<br/>
+
+### Projects
+**This Website**
+* Any free time I have between wedding stuff and job stuff, I'm brushing up on my webdev skills. This site is pure HTML, JS, and CSS, no framework yet. 
+<br/>
+
+**Agentic Coding**
+* Or as most call it: *Vibe Coding*. I'm a paying user of Google Gemini, and am exploring all sorts of fun MCP servers. Namely, [MCP Super Assistant](https://github.com/srbhptl39/MCP-SuperAssistant) and [Desktop Commander](https://github.com/wonderwhy-er/DesktopCommanderMCP). This enables me to use the web-based Gemini chat interface to view project directories and make file edits instead of relying on API calls via Cline in VS Code. 
+<br/>
+
+**Side-Fried**
+* My Firefox Vertical Tab add-on is still in development. I have a few features that need refining before I can release it to the public. The main features are workspaces, essentials, and pinned tab grid.
+<br/>
+
+* This is the starting point for a suite of Firefox add-ons that I plan to develop, inspired by the Zen Browser community. I want to make it easier for people to customize their Firefox experience without needing to know how to code.
+</script>
+            </section>
         </div>
     </main>
 
@@ -69,6 +93,50 @@
             <p>&copy; 2025 TheBigWazz. All rights reserved.</p>
         </div>
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const allUpdatesContainer = document.querySelector('.updates-list-card');
+
+        if (allUpdatesContainer) {
+            // Select all script tags intended for Markdown updates. 
+            // Consider adding a common class to these script tags for better specificity 
+            // if there are other script[type="text/markdown"] tags on the page not for updates.
+            const markdownSources = document.querySelectorAll('script[type="text/markdown"]'); 
+            let allRenderedHTML = "";
+
+            const sourcesArray = Array.from(markdownSources); // Process in document order
+
+            allRenderedHTML = sourcesArray.map((sourceElement, index) => {
+                const markdownText = sourceElement.textContent || sourceElement.innerText;
+                // Default error message, styled to be visible
+                let htmlContent = '<p style="color:red; font-weight:bold;">Error: Could not render Markdown for this update. Marked.js might not be loaded correctly or the Markdown source is empty.</p>';
+                
+                if (markdownText && markdownText.trim() !== '') {
+                    try {
+                        if (typeof marked === 'object' && typeof marked.parse === 'function') { // For Marked v4.x+
+                            htmlContent = marked.parse(markdownText);
+                        } else if (typeof marked === 'function') { // Fallback for older Marked versions
+                             htmlContent = marked(markdownText);
+                        } else {
+                            console.error('Marked.js library is not loaded or `marked.parse()`/`marked()` is not available for update source ID: ' + (sourceElement.id || `index ${index}`));
+                        }
+                    } catch (e) {
+                        console.error('Error parsing Markdown for update source ID: ' + (sourceElement.id || `index ${index}`), e);
+                        htmlContent = '<p style="color:red; font-weight:bold;">Error parsing Markdown for this update.</p>';
+                    }
+                } else {
+                    console.warn('Markdown source is empty for update source ID: ' + (sourceElement.id || `index ${index}`));
+                }
+                return `<div class="individual-update-entry">${htmlContent}</div>`;
+            }).join('<hr class="update-separator">'); // Join entries with an <hr>
+
+            allUpdatesContainer.innerHTML = allRenderedHTML;
+        } else {
+            console.warn('The container ".updates-list-card" was not found in the document.');
+        }
+    });
+    </script>
     <script src="assets/js/main.js"></script>
 </body>
 </html>
