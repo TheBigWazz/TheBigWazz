@@ -1,4 +1,4 @@
-## Hi there 👋
+## Like a normal sized wazz, but bigger
 
 <!--
 **TheBigWazz/TheBigWazz** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
